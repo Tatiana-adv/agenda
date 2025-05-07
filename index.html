@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Agenda de Contatos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f9f9f9;
+    }
+
+    h1 {
+      color: #333;
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      max-width: 400px;
+      margin: 0 auto 30px;
+      padding: 20px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+    }
+
+    label {
+      margin: 10px 0 5px;
+    }
+
+    input {
+      padding: 8px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      margin-top: 15px;
+      padding: 10px;
+      background-color: #28a745;
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    table {
+      width: 60%;
+      margin: 0 auto;
+      border-collapse: collapse;
+      background-color: #fff;
+    }
+
+    th, td {
+      padding: 12px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    th {
+      background-color: #f0f0f0;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Agenda de Contatos</h1>
+
+  <form id="form-contato">
+    <label for="nome">Nome:</label>
+    <input type="text" id="nome" required>
+
+    <label for="telefone">Telefone:</label>
+    <input type="text" id="telefone" required>
+
+    <button type="submit">Cadastrar</button>
+  </form>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nome</th>
+        <th>Telefone</th>
+      </tr>
+    </thead>
+    <tbody id="tabela-contatos">
+      <!-- Contatos serão inseridos aqui -->
+    </tbody>
+  </table>
+
+  <script>
+    const form = document.getElementById('form-contato');
+    const tabela = document.getElementById('tabela-contatos');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault(); // Impede o recarregamento da página
+
+      const nome = document.getElementById('nome').value.trim();
+      const telefone = document.getElementById('telefone').value.trim();
+
+      if (nome && telefone) {
+        const novaLinha = document.createElement('tr');
+
+        const colunaNome = document.createElement('td');
+        colunaNome.textContent = nome;
+
+        const colunaTelefone = document.createElement('td');
+        colunaTelefone.textContent = telefone;
+
+        novaLinha.appendChild(colunaNome);
+        novaLinha.appendChild(colunaTelefone);
+        tabela.appendChild(novaLinha);
+
+        // Limpa os campos
+        form.reset();
+      }
+    });
+  </script>
+
+</body>
+</html>
